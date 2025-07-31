@@ -27,20 +27,32 @@ public class Program {
         int n = Integer.parseInt(sc.nextLine());
 
         for (int i = 0; i < n; i++) {
-            System.out.print("Ma: "); String ma = sc.nextLine();
-            System.out.print("Ten: "); String ten = sc.nextLine();
-            System.out.print("Gia: "); double gia = Double.parseDouble(sc.nextLine());
+            System.out.print("Ma: ");
+            String ma = sc.nextLine();
+            System.out.print("Ten: ");
+            String ten = sc.nextLine();
+            System.out.print("Gia: ");
+            double gia = Double.parseDouble(sc.nextLine());
             ds.add(new SanPham(ma, ten, gia));
         }
 
-        ds.sort((a, b) -> Double.compare(b.getGia(), a.getGia()));
+        System.out.print("Ban muon sap xep (1: Tang dan, 2: Giam dan)? Chon: ");
+        int luaChon = Integer.parseInt(sc.nextLine());
 
-        System.out.println("\nDanh sach sau khi sap xep:");
+        if (luaChon == 1) {
+            ds.sort(Comparator.comparing(SanPham::getGia)); // Tang dan
+            System.out.println("\nDanh sach san pham tang dan theo gia:");
+        } else {
+            ds.sort((a, b) -> Double.compare(b.getGia(), a.getGia())); // Giam dan
+            System.out.println("\nDanh sach san pham giam dan theo gia:");
+        }
+
         ds.forEach(System.out::println);
-
-        SanPham max = Collections.max(ds, Comparator.comparing(SanPham::getGia));
-        System.out.println("\nSan pham co gia cao nhat: " + max);
         
+        // "::" truy xuất trực tiếp giá trị của đối tượng trong ds SanPham
+        SanPham max = Collections.max(ds, Comparator.comparing(SanPham::getGia)); 
+        System.out.println("\nSan pham co gia cao nhat: " + max);
+
     }
-    
+
 }
