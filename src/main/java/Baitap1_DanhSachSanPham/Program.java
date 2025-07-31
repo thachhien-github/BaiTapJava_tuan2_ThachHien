@@ -40,6 +40,7 @@ public class Program {
 
         SanPham max = Collections.max(ds, Comparator.comparing(SanPham::getGia));
         System.out.println("\nSan pham co gia cao nhat: " + max);
+        
     }
     
 }
